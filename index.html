@@ -95,7 +95,7 @@ function listen(){
  rec.onstart=()=>statusText.innerText="LISTENING...";
  rec.onresult=e=>{
   question.value=e.results[0][0].transcript;
-  send();
+  // send();
  };
  rec.onerror=()=>statusText.innerText="MIC ERROR";
  rec.onend=()=>statusText.innerText="SYSTEM ONLINE";
