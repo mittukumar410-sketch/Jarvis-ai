@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JARVIS AI</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#030b18;color:#00d9ff;
+ font-family:Arial,sans-serif;text-align:center;
+ min-height:100vh;padding:25px 15px;
+}
+h1{letter-spacing:5px;margin-top:35px}
+.circle{
+ width:210px;height:210px;border-radius:50%;
+ border:3px solid #00d9ff;
+ box-shadow:0 0 25px #00bfff, inset 0 0 25px #007bff;
+ margin:55px auto 25px;
+ display:flex;align-items:center;justify-content:center;
+ animation:pulse 2s infinite;
+}
+.circle span{font-size:65px}
+@keyframes pulse{
+ 50%{box-shadow:0 0 45px #00d9ff,inset 0 0 35px #007bff}
+}
+#status{color:#8deaff;margin:20px}
+#reply{color:white;min-height:55px;margin:20px auto}
+button{
+ background:#00cfff;color:#00101b;border:0;
+ border-radius:30px;padding:15px 25px;
+ font-size:16px;font-weight:bold;margin:8px;
+}
+input{
+ width:90%;padding:14px;border-radius:20px;
+ border:1px solid #00d9ff;background:#07182b;
+ color:white;font-size:16px;
+}
+</style>
+</head>
+<body>
+
+<h1>J.A.R.V.I.S</h1>
+<p>PERSONAL AI ASSISTANT</p>
+
+<div class="circle"><span>🤖</span></div>
+
+<p id="status">SYSTEM ONLINE</p>
+<div id="reply">Hello! I am JARVIS. How can I help you?</div>
+
+<input id="question" placeholder="Type your command...">
+
+<br>
+<button onclick="listen()">🎙️ Speak</button>
+<button onclick="send()">SEND</button>
+
+<script>
+const statusText=document.getElementById("status");
+const reply=document.getElementById("reply");
+const question=document.getElementById("question");
+
+function speak(text){
+ const speech=new SpeechSynthesisUtterance(text);
+ speech.lang="hi-IN";
+ speech.rate=1;
+ speechSynthesis.cancel();
+ speechSynthesis.speak(speech);
+}
+
+function listen(){
+ const SR=window.SpeechRecognition ||
+          window.webkitSpeechRecognition;
+ if(!SR){
+  statusText.innerText="Speech not supported. Use Chrome.";
+  return;
+ }
+ const rec=new SR();
+ rec.lang="hi-IN";
+ rec.onstart=()=>statusText.innerText="LISTENING...";
+ rec.onresult=(e)=>{
+  question.value=e.results[0][0].transcript;
+  send();
+ };
+ rec.onerror=()=>statusText.innerText="MIC ERROR";
+ rec.onend=()=>statusText.innerText="SYSTEM ONLINE";
+ rec.start();
+}
+
+function send(){
+ const q=question.value.trim().toLowerCase();
+ if(!q)return;
+
+ let answer="Sorry, I don't understand this command yet.";
+
+ if(q.includes("hello") || q.includes("नमस्ते"))
+  answer="Hello! Sir, I am JARVIS. How can I help you?";
+ else if(q.includes("your name") || q.includes("नाम"))
+  answer="My name is JARVIS, your personal assistant.";
+ else if(q.includes("time") || q.includes("समय"))
+  answer="The current time is "+new Date().toLocaleTimeString();
+ else if(q.includes("date") || q.includes("तारीख"))
+  answer="Today's date is "+new Date().toLocaleDateString();
+ else if(q.includes("who are you"))
+  answer="I am your personal mobile assistant.";
+
+ reply.innerText=answer;
+ speak(answer);
+ question.value="";
+}
+</script>
+
+</body>
+</html>
+
