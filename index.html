@@ -125,7 +125,7 @@ function send(){
  }
 
  else if(q.includes("your name")||q.includes("नाम")){
-  say("My name is JARVIS. Your personal assistant.");
+  say("My name is Nisha. Your personal assistant.");
  }
 
  else if(q.includes("time")||q.includes("समय")){
@@ -213,6 +213,11 @@ else if(
 }
 
 showNotes();
+ window.addEventListener("load", function(){
+  setTimeout(function(){
+    say("Hello Sir, मिट्ठू ji! निशा is ready to help you.");
+  }, 1000);
+});
 </script>
 </body>
 </html>
