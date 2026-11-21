@@ -136,14 +136,22 @@ function send(){
   say("आज की तारीख है "+new Date().toLocaleDateString("hi-IN"));
  }
 
- else if(q.includes("open youtube")||q.includes("यूट्यूब खोलो")){
-  say("Opening YouTube");
-  window.open("https://www.youtube.com","_blank");
- }
+else if(
+ q.includes("youtube") ||
+ q.includes("यूट्यूब") ||
+ q.includes("यूटुब")
+){
+ say("Opening YouTube Sir");
+ window.open("https://www.youtube.com","_blank");
+}
 
- else if(q.includes("open google")||q.includes("गूगल खोलो")){
-  say("Opening Google");
-  window.open("https://www.google.com","_blank");
+ else if(
+ q.includes("open google") ||
+ q.includes("google") ||
+ q.includes("गूगल")
+){
+ say("Opening Google Sir");
+ window.open("https://www.google.com","_blank");
  }
 
  else if(q.includes("show notes")||q.includes("नोट दिखाओ")){
