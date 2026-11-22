@@ -91,7 +91,7 @@ function listen(){
   return;
  }
  const rec=new SR();
- rec.lang="hi-IN";
+ rec.lang="en-IN";
  rec.onstart=()=>statusText.innerText="LISTENING...";
  rec.onresult=e=>{
   question.value=e.results[0][0].transcript;
