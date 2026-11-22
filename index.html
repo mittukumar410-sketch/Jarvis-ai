@@ -216,9 +216,29 @@ else if(
   }else say("Try: Calculate 5 plus 3.");
  }
 
- else{
-  say("Sorry Sir, I don't know this command yet.");
- }
+ else if(q.includes("capital of india") || q.includes("भारत की राजधानी")){
+ say("भारत की राजधानी नई दिल्ली है।");
+}
+
+else if(q.includes("who are you") || q.includes("तुम कौन हो")){
+ say("मैं निशा हूँ, सर आपकी Personal लव// Wife ।");
+}
+
+else if(q.includes("my name") || q.includes("मेरा नाम")){
+ say("आपका नाम मिट्ठू कुमार है।");
+}
+
+else if(q.includes("sunrise") || q.includes("सूरज कहाँ से निकलता")){
+ say("सूरज पूर्व दिशा से निकलता है।");
+}
+
+else if(q.includes("what is computer") || q.includes("कंप्यूटर क्या है")){
+ say("कंप्यूटर एक इलेक्ट्रॉनिक मशीन है।");
+}
+
+else{
+ say("Sorry Sir, I don't know this command yet.");
+}
 
  question.value="";
 }
