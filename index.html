@@ -53,7 +53,7 @@ button{
 
 <p id="status">SYSTEM ONLINE</p>
 <div id="reply">Hello Sir! I am JARVIS.</div>
-
+<button id="languageBtn" onclick="toggleLanguage()">🌐 English</button>
 <input id="question" placeholder="Type your command...">
 
 <br>
@@ -69,7 +69,18 @@ button{
 const statusText=document.getElementById("status");
 const reply=document.getElementById("reply");
 const question=document.getElementById("question");
+let voiceLang = "en-IN";
 
+function toggleLanguage(){
+  voiceLang = voiceLang === "en-IN" ? "hi-IN" : "en-IN";
+
+  document.getElementById("languageBtn").innerText =
+    voiceLang === "en-IN" ? "🌐 English" : "🌐 हिंदी";
+
+  say(voiceLang === "en-IN"
+    ? "English language selected"
+    : "हिंदी भाषा चुनी गई");
+}
 function speak(text){
  const s=new SpeechSynthesisUtterance(text);
  s.lang=/[\u0900-\u097F]/.test(text)?"hi-IN":"en-IN";
@@ -91,7 +102,7 @@ function listen(){
   return;
  }
  const rec=new SR();
- rec.lang="en-IN";
+ rec.lang=voiceLang;
  rec.onstart=()=>statusText.innerText="LISTENING...";
  rec.onresult=e=>{
   question.value=e.results[0][0].transcript;
