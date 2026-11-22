@@ -102,7 +102,7 @@ function listen(){
   return;
  }
  const rec=new SR();
- rec.lang=voiceLang;
+ rec.lang="hi-IN";
  rec.onstart=()=>statusText.innerText="LISTENING...";
  rec.onresult=e=>{
   question.value=e.results[0][0].transcript;
